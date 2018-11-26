@@ -44,18 +44,18 @@
                       .outerRadius(radius)
                       .innerRadius(radius - 80);
 
-        d3.csv("partyrevenue.csv", function(error, abc) {
+        d3.csv("browseruse.csv", function(error, data) {
             if (error) {
                 throw error;
             }
             var arc = g.selectAll(".arc")
-                       .abc(pie(abc))
+                       .data(pie(abc))
                        .enter().append("g")
                        .attr("class", "arc");
 
             arc.append("path")
                .attr("d", path)
-               .attr("fill", function(d) { return color(d.abc.party); });
+               .attr("fill", function(d) { return color(d.data.browser); });
         
             console.log(arc)
         
@@ -63,13 +63,13 @@
                .attr("transform", function(d) { 
                         return "translate(" + label.centroid(d) + ")"; 
                 })
-               .text(function(d) { return d.abc.party; });
+               .text(function(d) { return d.data.browser; });
             });
 
             svg.append("g")
                .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
                .append("text")
-               .text("台北市中山區政黨政治獻金收入比例")
+               .text("Browser use statistics - Jan 2017")
                .attr("class", "title")
     </script>
 </body>
